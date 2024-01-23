@@ -33,10 +33,10 @@ int completeforrand;
     volumeofbox(a, b, c, unknown);
 
     if(completeforrand >= 131057){
-        std::cout << "You got a common number which was a big number try again";
+        std::cout << "You got a common number which was" << completeforrand << "it is a big number try again";
     }
     else if(completeforrand <= 131057){
-        std::cout << "You got a very common number";
+        std::cout << "You got << " << completeforrand << "which is a very common number";
     }
 
     int lmeow = 32765;
