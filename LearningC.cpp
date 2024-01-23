@@ -39,9 +39,9 @@ int completeforrand;
         std::cout << "You got << " << completeforrand << "which is a very common number";
     }
 
-    int lmeow = 32765;
+    int lm = 32765;
 
-    if(completeforrand == lmeow){
+    if(completeforrand == lm){
         std::cout << "You somehow managed to hit the jackpot and this is almost impossible nice";
     };
 
