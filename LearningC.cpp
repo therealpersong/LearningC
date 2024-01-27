@@ -1,27 +1,44 @@
 #include <iostream>
 
-int main() {
+int getDigit(const int number);
+int sumOddDigits(const std::string cardNumber);
+int sumEvenDigits(const std::string cardNumber);
 
-    std::string questions[] = {"1. What year was C++ created?: ",
-                                "2. Who invented C++?: ",
-                                "3. What is the predecessor of C++?: ",
-                                "4. Is the Earth flat?"};
+int main()
+{
+    std::string cardNumber;
+    int result = 0;
 
-    std::string options[][4] = {{"A. 1969", "B. 1975", "C. 1985", "D. 1989"},
-                                {"A. Gudio van Rossum", "B. Bjarne Stroustrup", "C. John Carmack", "D. Mark Zuckerburg"},
-                                {"A. C","B. C+","C. C--","D. B++"},
-                                {"A. yes", "B. no", "C. sometimes", "D. what's Earth?"}};
+    std::cout << "Enter a credit card number: ";
+    std::cin >> cardNumber;
 
-    char answerKey[] = {'C','B','A','B'};
+    result = sumEvenDigits(cardNumber) + sumOddDigits(cardNumber);
 
-    int size = sizeof(questions) / sizeof(questions[0]);
-    int score = 0;
+    if (result % 10 == 0) {
+        std::cout << cardNumber << " is valid";
+    } else {
+        std::cout << cardNumber << " is not valid";
+    }
 
-    for (int i = 0; i < size; i++) {
-        std::cout << questions[i] << '\n';
+    return 0;
+}
 
-        for (int j = 0; j < sizeof(options[i]) / sizeof(options[i][0]); j++) {
-            std::cout << options[i][j] << '\n';
-        }
+int getDigit(const int number) {
+    return number % 10 + (number / 10 % 10);
+}
 
-std::cout << "Okay";
+int sumOddDigits(const std::string cardNumber) {
+    int sum = 0;
+    for (int i = cardNumber.size() - 1; i >= 0; i -= 2) {
+        sum += cardNumber[i] - '0';
+    }
+    return sum;
+}
+
+int sumEvenDigits(const std::string cardNumber) {
+    int sum = 0;
+    for (int i = cardNumber.size() - 2; i >= 0; i -= 2) {
+        sum += getDigit((cardNumber[i] - '0') * 2);
+    }
+    return sum;
+}
