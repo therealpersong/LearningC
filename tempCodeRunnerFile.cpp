@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main() {
+int main(){
 
     std::string questions[] = {"1. What year was C++ created?: ",
                                 "2. Who invented C++?: ",
@@ -12,16 +12,7 @@ int main() {
                                 {"A. C","B. C+","C. C--","D. B++"},
                                 {"A. yes", "B. no", "C. sometimes", "D. what's Earth?"}};
 
-    char answerKey[] = {'C','B','A','B'};
+char answerKey[] = {'C','B','A','B'};
 
-    int size = sizeof(questions) / sizeof(questions[0]);
-    int score = 0;
-
-    for (int i = 0; i < size; i++) {
-        std::cout << questions[i] << '\n';
-
-        for (int j = 0; j < sizeof(options[i]) / sizeof(options[i][0]); j++) {
-            std::cout << options[i][j] << '\n';
-        }
-
-std::cout << "Okay";
+    return 0;
+}
