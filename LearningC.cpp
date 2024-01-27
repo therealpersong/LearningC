@@ -1,44 +1,45 @@
 #include <iostream>
+#include <ctime>
 
-int getDigit(const int number);
-int sumOddDigits(const std::string cardNumber);
-int sumEvenDigits(const std::string cardNumber);
+void drawBoard(char *spaces);
+void PlayerMove(char *spaces, char player);
+void ComputerMove(char *spaces, char computer);
+bool checkWinner(char *spaces, char player, char computer);
+bool checkTie(char *spaces);
 
 int main()
 {
-    std::string cardNumber;
-    int result = 0;
 
-    std::cout << "Enter a credit card number: ";
-    std::cin >> cardNumber;
+    char spaces[9] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
+    char player = 'X';
+    char computer = 'O';
+    bool running = true;
 
-    result = sumEvenDigits(cardNumber) + sumOddDigits(cardNumber);
-
-    if (result % 10 == 0) {
-        std::cout << cardNumber << " is valid";
-    } else {
-        std::cout << cardNumber << " is not valid";
-    }
-
+    drawBoard(spaces);
     return 0;
 }
-
-int getDigit(const int number) {
-    return number % 10 + (number / 10 % 10);
+void drawBoard(char *spaces){
+    std::cout << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[0] <<"  |  " << spaces[1] <<"  |   " << spaces[2] <<"  " << '\n';
+    std::cout << "_____|_____|_____" << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[3] <<"  |  " << spaces[4] <<"  |   " << spaces[5] <<"  " << '\n';
+    std::cout << "_____|_____|_____" << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[6] <<"  |  " << spaces[7] <<"  |   " << spaces[8] <<"  " << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << '\n';
 }
+void PlayerMove(char *spaces, char player){
 
-int sumOddDigits(const std::string cardNumber) {
-    int sum = 0;
-    for (int i = cardNumber.size() - 1; i >= 0; i -= 2) {
-        sum += cardNumber[i] - '0';
-    }
-    return sum;
 }
+void ComputerMove(char *spaces, char computer){
 
-int sumEvenDigits(const std::string cardNumber) {
-    int sum = 0;
-    for (int i = cardNumber.size() - 2; i >= 0; i -= 2) {
-        sum += getDigit((cardNumber[i] - '0') * 2);
-    }
-    return sum;
+}
+bool checkWinner(char *spaces, char player, char computer){
+    return 0;
+}
+bool checkTie(char *spaces){
+    return 0;
 }
