@@ -1,38 +1,41 @@
 #include <iostream>
 
-struct student {
-    std::string name;
-    double gpa;
-    bool enrolled;
+// Define a struct named Car
+struct Car {
+    std::string model;
+    int year;
+    std::string color;
 };
 
+// Declare the function printCar that takes a Car parameter and prints its details
+void printCar(Car car);
+
 int main() {
-    student student1;
-    student1.name = "Spongebob";
-    student1.gpa = 3.2;
-    student1.enrolled = true;
+    // Declare two Car objects named car1 and car2
+    Car car1;
+    Car car2;
 
-    std::cout << "The student's name is: " << student1.name << '\n';
-    std::cout << "The student's GPA is: " << student1.gpa << '\n';
-    std::cout << "Is the student enrolled?: " << student1.enrolled << '\n';
+    // Initialize car1 with specific values
+    car1.model = "Mustang";
+    car1.year = 2023;
+    car1.color = "red";
 
-    student student2;
-    student2.name = "Patrick";  // Fix: Use student2 instead of student1
-    student2.gpa = 2.1;
-    student2.enrolled = true;
+    // Initialize car2 with specific values
+    car2.model = "Corvette";
+    car2.year = 2024;
+    car2.color = "blue";
 
-    std::cout << "The student's name is: " << student2.name << '\n';
-    std::cout << "The student's GPA is: " << student2.gpa << '\n';
-    std::cout << "Is the student enrolled?: " << student2.enrolled << '\n';
-
-    student student3;
-    student3.name = "Squidward";  // Fix: Use student3 instead of student1
-    student3.gpa = 1.5;
-    student3.enrolled = false;
-
-    std::cout << "The student's name is: " << student3.name << '\n';
-    std::cout << "The student's GPA is: " << student3.gpa << '\n';
-    std::cout << "Is the student enrolled?: " << student3.enrolled << '\n';
+    // Call the printCar function to print details of car1
+    std::cout << &car1 << '\n';
+    printCar(car1);
 
     return 0;
+}
+
+// Define the printCar function to print details of a Car
+void printCar(Car car) {
+    std::cout << "The Address is: " << &car << '\n';
+    std::cout << "Model: " << car.model << '\n';  // Print the model
+    std::cout << "Year: " << car.year << '\n';    // Print the year
+    std::cout << "Color: " << car.color << '\n';  // Print the color
 }
