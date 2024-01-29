@@ -1,38 +1,23 @@
-#include <iostream>
+#include <Iostream>
 
-class Stove{
-    private:
-        int temperature = 0;
+class Animal{
     public:
-
-    int getTemperature(){
-        return temperature;
+    bool alive = true;
+    void eat(){
+        std::cout << "This animal is eating\n";
     }
-    void setTemperature(int temperature){
-        if(temperature < 0){
-            this->temperature = 0;
-        }
-        else if(temperature >= 10){
-            this->temperature = temperature = 10;
-        }
-        else{
-            this->temperature = temperature;
-        }
-        
-    }
+};
 
+class Dog : public Animal{
 
 };
 
 int main(){
-    Stove stove;
 
-    //stove.temperature = 10000000000;
-
-    stove.setTemperature(0.5);
+    Dog dog;
     
-    std::cout << "The temperature setting is: " << stove.getTemperature();
-}
-void fege(){
-    //how to add a cool command
+    std::cout << dog.alive << '\n';
+    dog.eat();
+
+    return 0;
 }
