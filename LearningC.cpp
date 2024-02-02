@@ -1,15 +1,14 @@
-#include <iostream>
-#include <ctime>
-#include <cmath>
 
-int main() {
-    double ar[5] = {3.69, 6.69, 9.99, 12.55, 14.55};
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+}
 
-    for (int i = 0; i < 5; i++) {
-        std::cout << "Element at index " << i << ": " << ar[i] << std::endl;
-    }
-
-    std::cout << "Code works perfectly" << std::endl;
-
-    return 0;
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);                      // wait for a second
 }
