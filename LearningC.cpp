@@ -1,32 +1,45 @@
-#include <Iostream>
+#include "MyBot.h"
+#include <dpp/dpp.h>
 
-int main(){
+/* Be sure to place your token in the line below.
+ * Follow steps here to get a token:
+ * https://dpp.dev/creating-a-bot-application.html
+ * When you invite the bot, be sure to invite it with the
+ * scopes 'bot' and 'applications.commands', e.g.
+ * https://discord.com/oauth2/authorize?client_id=940762342495518720&scope=bot+applications.commands&permissions=139586816064
+ */
+const std::string    BOT_TOKEN = "MTIwMzYyNDI5NjkzNzgyNDI4Nw.GaY74i.E7lKwJSTYfZhT0Bg7j9x1GDs1xhuJE6cxTHja0";
 
+int main()
+{
+	/* Create bot cluster */
+	dpp::cluster bot(BOT_TOKEN);
 
-    int choice;
+	/* Output simple log messages to stdout */
+	bot.on_log(dpp::utility::cout_logger());
 
-    std::cout << "Pick a number between 1-5: ";
-    std::cin >> choice;
+	/* Register slash command here in on_ready */
+	bot.on_ready([&bot](const dpp::ready_t& event) {
+		/* Wrap command registration in run_once to make sure it doesnt run on every full reconnection */
+		if (dpp::run_once<struct register_bot_commands>()) {
+			std::vector<dpp::slashcommand> commands{
+				{ "cooldif", "newdif", bot.me.id }
+			};
 
-    switch(choice){
-        case 1:
-        std::cout << "You get nothing";
-        break;
-        case 2:
-        std::cout << "You get a pen";
-        break;
-        case 3: std::cout << "You get a jackhammer";
-        break;
-        case 4: std::cout << "You get a mouse";
-        break;
-        case 5: std::cout << "you get a fridge";
-        break;
-    default: std::cout << "** You get a note that says, 'I am confused on what you asked for so you get this note instead of something. ** \n";
-    };
+			bot.global_bulk_command_create(commands);
+		}
+		});
 
-    if(choice = 2839){
-        std::cout << "The values for the secret codes are 223, m553, 5.56";
-    }
+	/* Handle slash command with the most recent addition to D++ features, coroutines! */
+	bot.on_slashcommand([](const dpp::slashcommand_t& event) -> dpp::task<void> {
+		if (event.command.get_command_name() == "cooldif") {
+			co_await event.co_reply("coolupdate");
+		}
+		co_return;
+		});
 
-    return 0;
+	/* Start the bot */
+	bot.start(dpp::st_wait);
+
+	return 0;
 }
