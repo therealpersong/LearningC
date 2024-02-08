@@ -1,45 +1,11 @@
-#include "MyBot.h"
-#include <dpp/dpp.h>
+#include <iostream>
 
-/* Be sure to place your token in the line below.
- * Follow steps here to get a token:
- * https://dpp.dev/creating-a-bot-application.html
- * When you invite the bot, be sure to invite it with the
- * scopes 'bot' and 'applications.commands', e.g.
- * https://discord.com/oauth2/authorize?client_id=940762342495518720&scope=bot+applications.commands&permissions=139586816064
- */
-const std::string    BOT_TOKEN = "MTIwMzYyNDI5NjkzNzgyNDI4Nw.GaY74i.E7lKwJSTYfZhT0Bg7j9x1GDs1xhuJE6cxTHja0";
+int main(){
 
-int main()
-{
-	/* Create bot cluster */
-	dpp::cluster bot(BOT_TOKEN);
+	std::string hello;
 
-	/* Output simple log messages to stdout */
-	bot.on_log(dpp::utility::cout_logger());
-
-	/* Register slash command here in on_ready */
-	bot.on_ready([&bot](const dpp::ready_t& event) {
-		/* Wrap command registration in run_once to make sure it doesnt run on every full reconnection */
-		if (dpp::run_once<struct register_bot_commands>()) {
-			std::vector<dpp::slashcommand> commands{
-				{ "cooldif", "newdif", bot.me.id }
-			};
-
-			bot.global_bulk_command_create(commands);
-		}
-		});
-
-	/* Handle slash command with the most recent addition to D++ features, coroutines! */
-	bot.on_slashcommand([](const dpp::slashcommand_t& event) -> dpp::task<void> {
-		if (event.command.get_command_name() == "cooldif") {
-			co_await event.co_reply("coolupdate");
-		}
-		co_return;
-		});
-
-	/* Start the bot */
-	bot.start(dpp::st_wait);
+	std::cout << "Hello world";
+	std::cin >> hello;
 
 	return 0;
 }
