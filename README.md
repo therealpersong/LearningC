@@ -1,1 +1,0 @@
-I'm learning c++, here I display the current projects I am working, on the code here may change daily and this indicates that I am constantly changing topics or trying out leetcode and practicing/learning c++ concepts and possibly using it for robotics.
